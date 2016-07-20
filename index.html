@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta charset="utf-8">
+	    <title>Risk</title>
+	    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+	    <link rel="stylesheet" type="text/css" href="styles/dashboard_style.css">
+	    <link rel="stylesheet" type="text/css" href="styles/side_chart_style.css">
+	    <link rel="stylesheet" type="text/css" href="styles/parallel_coord_style.css">
+	    <link rel="stylesheet" type="text/css" href="styles/chosen.css">
+	</head>
+
+	<body>
+		<script>
+			var view_type = "combo";
+			var view_types = [
+				"combo",
+				"map_only",
+				"cp_only"
+			];
+		</script>
+		
+		<div id="content">
+			<div id="div_hdr_left">
+				<label class="title">Credit Risk Dashboard</label>
+				<div id="btn_set_views">
+					<input type="radio" id="btn_combo" name="radio" value="combo" checked="checked"><label for="btn_combo">Exposure by Counterparty</label>
+					<input type="radio" id="btn_map" name="radio" value="map_only"><label for="btn_map">Exposure by Position</label>
+				</div>
+
+				<div class="ui-widget" style="float: left">
+					<label for="ddlCountries" class="lblCtry">Country: </label>
+					<input id="ddlCountries">
+					<label id="lblWarn" style="display: none">No Exposure for Country</label>
+				</div>
+
+				
+				
+				<div class="chosen-cp">
+					<select id="cp_sel" data-placeholder="Choose a Counterparty..." class="chosen-select"
+						multiple ></select>
+				</div>
+			</div>
+		
+			<nav>
+				<ul>
+					<li><a href="https://github.com/jeffreyrogers/cs171-final-project">Data</a></li>
+					<li><a href="https://vimeo.com/93557553">Video</a></li>
+					<li><a href="process_book.pdf">Process Book</a></li>
+				</ul>
+			</nav>
+
+			<div id="div_desc">
+				<label id="descCP" class="desc">This view shows the credit risk to the counterparty.  The holdings have been aggregated to the counterparty level and the counterparties have been aggregated to their respective countries.  </label> <label id="descHld" class="desc" style="display: none">This view shows the credit risk of the holdings to the country.  Selecting a country will drill in to see which counterparties were used for the transaction.
+				</label>
+			</div>
+			<div id="container" class="container">
+				<div class="slider">
+					<div id="div_right" class="right pcoord">
+						<div id="div_parallel" ></div>
+						<div id="div_grid">
+							<div id="div_tab_header"></div>
+							<div id="div_tab_body"></div>
+						</div>				
+					</div>
+					<div id="div_map" class="left map">
+					</div>
+				</div>
+			</div>
+			<div id="charts" class="charts">
+
+			</div>
+		</div>        
+		<script src="lib/d3.min.js"></script>
+		<script src="lib/topojson.v1.min.js"></script>
+		<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+		<script src="lib/chosen.jquery.min.js"></script>
+		<script src="lib/numeral.min.js"></script>
+		<script src="lib/d3-tip.js"></script>
+		<script src="lib/side_charts.js"></script>
+		<script src="lib/load_parallel_data.js"></script>
+		<script src="lib/map.js"></script>
+		<script src="lib/import_data.js"></script>
+	
+
+		<script>
+			$(function(){
+				//$("#ctry_sel").hide();
+				$("#btn_set_views").buttonset();
+				$("#btn_set_views :radio").click(function(){
+					var idx_curr = view_types.indexOf(view_type);
+					var idx_new = view_types.indexOf($(this).val());
+					if(idx_new + idx_curr >= 2){
+						$(".flipper").toggleClass("flipped");
+					}
+					$(".desc").toggle();
+					view_type = $(this).val();
+					set_graph_type($(this).val());
+					upd_charts(-1);
+					//$("#cp_sel, #ctry_sel").toggle();
+					shade_map();
+					$(this).removeClass("ui-state-focus");
+				});
+				$(".chosen-cp").hide();
+				
+
+			});
+		</script>
+
+	</body>
+</html>

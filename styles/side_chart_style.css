@@ -1,0 +1,24 @@
+.axis line,
+    .axis path {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+.charts{
+	font-size: smaller;
+}
+
+.detailTitle{
+	fill: steelblue;
+	font-weight: bold;
+}
+
+.not_sel{
+	fill: gray;
+	font-weight: bold;
+}
+.no_exp{
+	fill: gray;
+	font-weight: bold;	
+}

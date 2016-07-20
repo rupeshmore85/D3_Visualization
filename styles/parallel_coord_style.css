@@ -1,0 +1,96 @@
+    svg {
+          font: 10px sans-serif;
+        }
+        
+        .background path {
+          fill: none;
+         /* stroke: #ccc; */
+         /*  stroke-opacity: .4; */
+          shape-rendering: crispEdges;
+        }
+        
+        .foreground path {
+          fill: none;
+          stroke: steelblue;
+          stroke-opacity: .7;
+        }
+        
+        .brush .extent {
+          fill-opacity: .3;
+          stroke: #fff;
+          shape-rendering: crispEdges;
+        }
+        
+        .axis line, .axis path {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+        
+        .axis text {
+          text-shadow: 0 1px 0 #fff;
+          font-size: 10px;
+          cursor: move;
+
+        }
+
+        .axisTitle {
+          font-weight: bold;
+        }
+
+        #div_tab_header{
+          height: 30px;
+          max-height: 30px;
+          position: relative;
+          /*left: 570px;*/
+          width: 501px;
+          border: 16px;
+          left: 15px;
+          border-color: #666666;
+          /*top: -223px;*/
+        }
+
+        #div_tab_body {
+          height: 300px; 
+          overflow-y: scroll;
+           position: relative;
+           /*left: 570px;*/
+           width: 501px;
+           border:2px;
+           left: 15px;
+           /*top: -223px;*/
+
+        }
+
+        .col0 {
+            display: none;   
+        }
+        .col1 {
+            width: 180px;
+        }
+        .col2 {
+            width: 70px;
+        }
+        .col3 {
+            width: 50px;
+        }
+        .col4, .col5 {
+            width: 80px;
+        }
+
+        th {
+          border: 1px black solid;
+          padding: 2px;
+          font-size: 11px;
+          background-color: #dedede;
+         /* position: absolute;*/
+
+        }
+
+        td {
+
+          border: 1px black solid;
+          padding: 2px;
+          font-size: 11px;
+
+        }
